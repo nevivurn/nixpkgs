@@ -9,11 +9,11 @@
 
 stdenv.mkDerivation rec {
   pname = "libsvm";
-  version = "3.33";
+  version = "3.35";
 
   src = fetchurl {
     url = "https://www.csie.ntu.edu.tw/~cjlin/libsvm/libsvm-${version}.tar.gz";
-    sha256 = "sha256-1doSzMPQ7thFP732+sfZ8AUvPopfB6IXTk7wqdg9zfg=";
+    hash = "sha256-6lYz/ISxwvpYqkxEti5DdXMCApeh375zvxUx7IF6hHg=";
   };
 
   patches = lib.optionals withOpenMP [ ./openmp.patch ];
@@ -36,7 +36,7 @@ stdenv.mkDerivation rec {
   installPhase =
     let
       libSuff = stdenv.hostPlatform.extensions.sharedLibrary;
-      soVersion = "3";
+      soVersion = "4";
       libName =
         if stdenv.hostPlatform.isDarwin then
           "libsvm.${soVersion}${libSuff}"
